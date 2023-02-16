@@ -12,6 +12,8 @@
 // and save it as environment variable into the .env file)
 const token = process.env.WHATSAPP_TOKEN;
 
+var msg;
+
 // Imports dependencies and set up http server
 const request = require("request"),
   express = require("express"),
@@ -43,6 +45,7 @@ app.post("/webhook", (req, res) => {
         req.body.entry[0].changes[0].value.metadata.phone_number_id;
       let from = req.body.entry[0].changes[0].value.messages[0].from; // extract the phone number from the webhook payload
       let msg_body = req.body.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
+      console.log(msg_body);
       axios({
         method: "POST", // Required, HTTP method, a string, e.g. POST, GET
         url:
